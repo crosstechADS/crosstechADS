@@ -2,8 +2,10 @@ import './App.css';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
+import logo from './logo.png';
 function App() {
 
+  //ação do botao cadastrar
   const handleClickRegister = (values) => {
     Axios.post("http://localhost:3001/register", {
       nome: values.nome,
@@ -13,6 +15,8 @@ function App() {
       alert(Response.data.msg);
     });
   };
+
+  //ação do botão login
   const handleClickLogin = (values) => {
     Axios.post("http://localhost:3001/login", {
       nome: values.nome,
@@ -36,6 +40,7 @@ function App() {
       .required("Campo Senha obrigatório."),
   });
 
+  //faz a validação dos campos do cadastro
   const validationCadastro = yup.object().shape({
     nome: yup
       .string()
@@ -56,6 +61,7 @@ function App() {
   return (
 
     <div className="container">
+      <div className="logo"> <img src={logo} width="150" height="150" /> </div>
       <h1>Login</h1>
       <Formik initialValues={{}}
         onSubmit={handleClickLogin}
